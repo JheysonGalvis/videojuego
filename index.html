@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>ASTRO &amp; SCHNAUZER: Odyssey 198X</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="arcade-shell">
+    <header class="top-bar">
+      <div class="brand">
+        <span class="badge">8-BIT</span>
+        <h1>ASTRO &amp; SCHNAUZER</h1>
+      </div>
+      <div class="toolbar">
+        <button id="btn-crt" class="retro-btn" type="button" title="Alternar efecto CRT">CRT: ON</button>
+        <button id="btn-music" class="retro-btn" type="button" title="Alternar música 8-bit">MUS: ON</button>
+        <button id="btn-sfx" class="retro-btn" type="button" title="Alternar efectos">SFX: ON</button>
+        <button id="btn-pause" class="retro-btn" type="button" title="Pausar (P)">PAUSA</button>
+      </div>
+    </header>
+
+    <main class="screen-frame">
+      <div class="canvas-wrapper crt-on" id="canvas-wrapper">
+        <canvas id="game-canvas" width="480" height="270"></canvas>
+        <div class="crt-overlay" aria-hidden="true"></div>
+
+        <!-- Title / Start Overlay -->
+        <section id="overlay-title" class="overlay active">
+          <div class="overlay-card">
+            <p class="eyebrow">SUPER SPACE BROS. EDITION</p>
+            <h2 class="pixel-title">ASTRO &amp; SCHNAUZER</h2>
+            <p class="subtitle">Recorre 3 planetas junto a tu fiel schnauzer espacial, recolecta estrellas y destruye cometas y meteoros con tu pistola láser.</p>
+            <div class="controls-grid">
+              <div class="ctrl-item"><kbd>←</kbd><kbd>→</kbd> / <kbd>A</kbd><kbd>D</kbd><span>Mover</span></div>
+              <div class="ctrl-item"><kbd>ESPACIO</kbd> / <kbd>W</kbd> / <kbd>↑</kbd><span>Saltar (mantén = más alto)</span></div>
+              <div class="ctrl-item"><kbd>Z</kbd> / <kbd>J</kbd> / <kbd>CTRL</kbd><span>Pistola Espacial</span></div>
+              <div class="ctrl-item"><kbd>P</kbd> / <kbd>ESC</kbd><span>Pausa</span></div>
+            </div>
+            <button id="btn-start" class="primary-btn" type="button">PRESS START</button>
+          </div>
+        </section>
+
+        <!-- Pause Overlay -->
+        <section id="overlay-pause" class="overlay">
+          <div class="overlay-card compact">
+            <h2 class="pixel-title">PAUSA</h2>
+            <p class="subtitle">Tu schnauzer espera tus órdenes.</p>
+            <div class="btn-row">
+              <button id="btn-resume" class="primary-btn" type="button">CONTINUAR</button>
+              <button id="btn-restart-level" class="retro-btn" type="button">REINICIAR PLANETA</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Level Clear Overlay -->
+        <section id="overlay-clear" class="overlay">
+          <div class="overlay-card compact">
+            <p class="eyebrow">¡PLANETA COMPLETADO!</p>
+            <h2 id="clear-title" class="pixel-title">LUNA CRÁTER</h2>
+            <div id="clear-stats" class="stats-box"></div>
+            <button id="btn-next-level" class="primary-btn" type="button">SIGUIENTE PLANETA</button>
+          </div>
+        </section>
+
+        <!-- Game Over / Victory Overlay -->
+        <section id="overlay-end" class="overlay">
+          <div class="overlay-card compact">
+            <p id="end-eyebrow" class="eyebrow">FIN DE LA MISIÓN</p>
+            <h2 id="end-title" class="pixel-title">GAME OVER</h2>
+            <p id="end-subtitle" class="subtitle"></p>
+            <div id="end-stats" class="stats-box"></div>
+            <button id="btn-play-again" class="primary-btn" type="button">JUGAR DE NUEVO</button>
+          </div>
+        </section>
+      </div>
+
+      <!-- Touch Controls for mobile/tablet -->
+      <div class="touch-controls" id="touch-controls" aria-label="Controles táctiles">
+        <div class="touch-dpad">
+          <button class="touch-btn" data-key="left" type="button">◀</button>
+          <button class="touch-btn" data-key="right" type="button">▶</button>
+        </div>
+        <div class="touch-actions">
+          <button class="touch-btn action-shoot" data-key="shoot" type="button">LÁSER</button>
+          <button class="touch-btn action-jump" data-key="jump" type="button">SALTO</button>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bottom-hint">
+      <span>Tip: Golpea los bloques <strong>?</strong> desde abajo o dispárales para conseguir mejoras de láser, escudos y estrellas extra.</span>
+    </footer>
+  </div>
+
+  <script src="js/audio.js" defer></script>
+  <script src="js/sprites.js" defer></script>
+  <script src="js/levels.js" defer></script>
+  <script src="js/game.js" defer></script>
+</body>
+</html>
